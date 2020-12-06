@@ -1,5 +1,5 @@
+import os
 import requests
-import random
 
 
 class OpenFoodFacts:
@@ -27,13 +27,16 @@ class OpenFoodFacts:
 
         return categories
 
-    def get_products_by_category(self, category):
-        r = requests.get(url=self.API_ENDPOINT + "cgi/search.pl", params={
-            "action": "process",
-            "json": 1,
-            "page_size": 100
+    def get_products_by_category(self):
+        for i in range(1, int(os.getenv("IMPORT_NUMBER_OF_PAGES")) + 1):
+            print(i)
 
-        })
+        # r = requests.get(url=self.API_ENDPOINT + "cgi/search.pl", params={
+        #     "action": "process",
+        #     "json": 1,
+        #     "page_size": 100
+        #
+        # })
 
-        if "name" not in category or "url" not in category:
-            raise Exception("The category passed in parameter is incorrect. It must include the keys: name and url.")
+        # if "name" not in category or "url" not in category:
+        #     raise Exception("The category passed in parameter is incorrect. It must include the keys: name and url.")
